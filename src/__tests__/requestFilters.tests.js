@@ -48,9 +48,7 @@ describe(`request filters`, () => {
             const result = skipOptionsRequest({
                 context: {
                     request: {
-                        url: {
-                            method: `OPTIONS`
-                        },
+                        method: `OPTIONS`
                     },
                 },
             });
@@ -61,9 +59,7 @@ describe(`request filters`, () => {
             const payload = {
                 context: {
                     request: {
-                        url: {
-                            method: `GET`
-                        },
+                        method: `GET`
                     },
                 },
             };

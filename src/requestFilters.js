@@ -44,7 +44,7 @@ function stripSensitiveData(payload) {
 }
 
 function skipOptionsRequest(payload) {
-    const method = _.get(`context.request.url.method`, payload);
+    const method = _.get(`context.request.method`, payload);
     return method === `OPTIONS` ? null : payload;
 }
 
