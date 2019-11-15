@@ -8,6 +8,7 @@ describe(`request filters`, () => {
     describe(`#removeNameDoubleSlash`, () => {
         it(`should replace double slashes`, () => {
             const result = removeNameDoubleSlash({
+                type: `request`,
                 name: `/api//v1/sources//:sourceId`,
             });
             expect(result.name).toBe(`/api/v1/sources/:sourceId`);
@@ -15,6 +16,7 @@ describe(`request filters`, () => {
 
         it(`should do nothing if there are no double slashes`, () => {
             const result = removeNameDoubleSlash({
+                type: `request`,
                 name: `/api/v1/sources/:sourceId`,
             });
             expect(result.name).toBe(`/api/v1/sources/:sourceId`);
@@ -24,6 +26,7 @@ describe(`request filters`, () => {
     describe(`#stripSensitiveData`, () => {
         it(`should strip sensitive data`, () => {
             const payload = {
+                type: `request`,
                 context: {
                     request: {
                         url: {
@@ -46,6 +49,7 @@ describe(`request filters`, () => {
     describe(`OPTIONS requests`, () => {
         it(`should skip OPTIONS requests`, () => {
             const result = skipOptionsRequest({
+                type: `request`,
                 context: {
                     request: {
                         method: `OPTIONS`
@@ -57,6 +61,7 @@ describe(`request filters`, () => {
 
         it(`should bypass GET requests`, () => {
             const payload = {
+                type: `request`,
                 context: {
                     request: {
                         method: `GET`

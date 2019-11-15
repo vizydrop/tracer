@@ -1,14 +1,6 @@
 const APM = require(`elastic-apm-node`);
 const requestFilters = require(`./requestFilters`);
 
-const allFilters = {
-    request: [
-        requestFilters.skipOptionsRequest,
-        requestFilters.removeNameDoubleSlash,
-        requestFilters.stripSensitiveData,
-    ],
-};
-
 function createTracer(opts) {
     const agent = APM.start({
         // metricsInterval: 0, // https://github.com/elastic/apm-agent-nodejs/issues/1515
@@ -36,15 +28,8 @@ function createTracer(opts) {
         ...opts,
     });
 
-    agent.addFilter((payload) => {
-        const filtersToApply = allFilters[payload.type];
-        if (filtersToApply && filtersToApply.length > 0) {
-            return filtersToApply.reduce(
-                (data, filter) => filter(data),
-                payload,
-            );
-        }
-        return payload;
+    requestFilters.forEach((filter) => {
+        agent.addFilter(filter);
     });
 
     if (

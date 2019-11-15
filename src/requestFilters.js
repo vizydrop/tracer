@@ -48,8 +48,18 @@ function skipOptionsRequest(payload) {
     return method === `OPTIONS` ? null : payload;
 }
 
+function requiresRequestType(fn) {
+    return (payload) => {
+        if (payload && payload.type === `request`) {
+            return fn(payload);
+        }
+
+        return payload;
+    }
+}
+
 module.exports = {
-    removeNameDoubleSlash,
-    stripSensitiveData,
-    skipOptionsRequest,
+    removeNameDoubleSlash: requiresRequestType(removeNameDoubleSlash),
+    stripSensitiveData: requiresRequestType(stripSensitiveData),
+    skipOptionsRequest: requiresRequestType(skipOptionsRequest),
 };
