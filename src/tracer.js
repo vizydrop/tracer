@@ -28,9 +28,9 @@ function createTracer(opts) {
         ...opts,
     });
 
-    requestFilters.forEach((filter) => {
-        agent.addFilter(filter);
-    });
+    agent.addFilter(requestFilters.skipOptionsRequest);
+    agent.addFilter(requestFilters.removeNameDoubleSlash);
+    agent.addFilter(requestFilters.stripSensitiveData);
 
     if (
         opts.logger &&
