@@ -1,9 +1,9 @@
 const {createTracer} = require(`./src/tracer`);
-const {
-    captureCorrelationIdMiddleware,
-} = require(`./src/captureCorrelationIdMiddleware`);
+const express = require(`./src/express`);
+const koa = require(`./src/koa`);
 
 module.exports = {
     createTracer,
-    captureCorrelationIdMiddleware,
+    express,
+    koa,
 };

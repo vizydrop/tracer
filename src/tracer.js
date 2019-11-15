@@ -10,18 +10,29 @@ const allFilters = {
 
 function createTracer(opts) {
     const agent = APM.start({
-        metricsInterval: 0,
+        // metricsInterval: 0, // https://github.com/elastic/apm-agent-nodejs/issues/1515
         centralConfig: false,
+
+        // request processing
         usePathAsTransactionName: true,
         captureHeaders: false,
-        errorOnAbortedRequests: true,
-        ...opts,
-        ignoreUrls: opts.ignoreUrls || [
+        ignoreUrls: [
             `/api/v1/status`,
             /\/assets\/.*/,
             /\/favicon.*/,
             `/status`,
         ],
+
+        // stack traces, erros,
+        errorOnAbortedRequests: false,
+        captureErrorLogStackTraces: false,
+        captureSpanStackTraces: false,
+        stackTraceLimit: 0,
+        captureExceptions: false,
+        logUncaughtExceptions: false,
+
+        // overrides
+        ...opts,
     });
 
     agent.addFilter((payload) => {
