@@ -10,3 +10,7 @@ const captureCorrelationIdMiddleware = (agent, getCorrelationId) => {
         await next();
     };
 };
+
+module.exports = {
+    captureCorrelationIdMiddleware,
+};
