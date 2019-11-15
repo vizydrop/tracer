@@ -4,7 +4,6 @@
   "version": "2.0.0",
   "scripts": {
     "test": "jest",
-    "test:ci": "export TEAMCITY_VERSION='10' && jest",
     "lint": "eslint --quiet .",
     "lint:ci": "yarn lint --format ./../node_modules/eslint-teamcity/index.js"
   },
