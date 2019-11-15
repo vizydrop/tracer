@@ -55,7 +55,7 @@ function requiresRequestType(fn) {
         }
 
         return payload;
-    }
+    };
 }
 
 module.exports = {
