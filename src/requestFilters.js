@@ -43,7 +43,13 @@ function stripSensitiveData(payload) {
     return payload;
 }
 
+function skipOptionsRequest(payload) {
+    const method = _.get(`context.request.method`, payload);
+    return method === `OPTIONS` ? null : payload;
+}
+
 module.exports = {
     removeNameDoubleSlash,
     stripSensitiveData,
+    skipOptionsRequest,
 };

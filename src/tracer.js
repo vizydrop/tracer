@@ -3,6 +3,7 @@ const requestFilters = require(`./requestFilters`);
 
 const allFilters = {
     request: [
+        requestFilters.skipOptionsRequest,
         requestFilters.removeNameDoubleSlash,
         requestFilters.stripSensitiveData,
     ],
