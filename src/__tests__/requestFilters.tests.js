@@ -1,6 +1,7 @@
 const {
     removeNameDoubleSlash,
     stripSensitiveData,
+    skipOptionsRequest,
 } = require(`../requestFilters`);
 
 describe(`request filters`, () => {
@@ -39,6 +40,46 @@ describe(`request filters`, () => {
                 search: `?token=********`,
                 full: `http://localhost/api/v1/sources?token=********`,
             });
+        });
+    });
+
+    describe(`OPTIONS requests`, () => {
+        it(`should skip OPTIONS requests`, () => {
+            const result = skipOptionsRequest({
+                context: {
+                    request: {
+                        url: {
+                            method: `OPTIONS`
+                        },
+                    },
+                },
+            });
+            expect(result).toBe(null);
+        });
+
+        it(`should bypass GET requests`, () => {
+            const payload = {
+                context: {
+                    request: {
+                        url: {
+                            method: `GET`
+                        },
+                    },
+                },
+            };
+
+            const result = skipOptionsRequest(payload);
+            expect(result).toBe(payload);
+        });
+
+        it(`should by pass non HTTP request`, () => {
+            const payload = {
+                context: {
+                },
+            };
+
+            const result = skipOptionsRequest(payload);
+            expect(result).toBe(payload);
         });
     });
 });
