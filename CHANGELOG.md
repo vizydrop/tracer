@@ -1,3 +1,6 @@
+#### v2.2.0 
+Do not patch logger if tracer inactive
+
 #### v2.1.0
 Skip OPTIONS requests 
 

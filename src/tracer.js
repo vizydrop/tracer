@@ -1,8 +1,8 @@
 const APM = require(`elastic-apm-node`);
 const requestFilters = require(`./requestFilters`);
 
-function createTracer(opts) {
-    const agent = APM.start({
+function createConfig(overrides) {
+    return {
         // metricsInterval: 0, // https://github.com/elastic/apm-agent-nodejs/issues/1515
         centralConfig: false,
 
@@ -24,20 +24,29 @@ function createTracer(opts) {
         captureExceptions: false,
         logUncaughtExceptions: false,
 
+        active: true,
+
         // overrides
-        ...opts,
-    });
+        ...overrides,
+    };
+}
+
+function createTracer(opts) {
+    const conf = createConfig(opts);
+
+    const agent = APM.start(conf);
 
     agent.addFilter(requestFilters.skipOptionsRequest);
     agent.addFilter(requestFilters.removeNameDoubleSlash);
     agent.addFilter(requestFilters.stripSensitiveData);
 
     if (
-        opts.logger &&
-        opts.logger.additionalFields &&
-        typeof opts.logger.additionalFields.add === `function`
+        conf.active &&
+        conf.logger &&
+        conf.logger.additionalFields &&
+        typeof conf.logger.additionalFields.add === `function`
     ) {
-        opts.logger.additionalFields.add({
+        conf.logger.additionalFields.add({
             "trace.id": () => agent.currentTraceIds[`trace.id`],
             "transaction.id": () => agent.currentTraceIds[`transaction.id`],
             "span.id": () => agent.currentTraceIds[`span.id`],
