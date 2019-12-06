@@ -1,33 +1,33 @@
 {
   "name": "@vizydrop/tracer",
   "license": "MIT",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "scripts": {
     "test": "jest",
     "lint": "eslint --quiet ."
   },
   "dependencies": {
-    "elastic-apm-node": "3.1.0",
+    "elastic-apm-node": "3.2.0",
     "lodash": "4.17.15"
   },
   "devDependencies": {
     "@vizydrop/eslint-config-vizydrop": "6.0.7",
-    "eslint": "6.6.0",
+    "eslint": "6.7.2",
     "eslint-config-airbnb": "18.0.1",
-    "eslint-config-prettier": "6.3.0",
+    "eslint-config-prettier": "6.7.0",
     "eslint-plugin-babel": "5.3.0",
     "eslint-plugin-filenames": "1.3.2",
-    "eslint-plugin-flowtype": "4.3.0",
+    "eslint-plugin-flowtype": "4.5.2",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-lodash-fp": "2.2.0-a1",
-    "eslint-plugin-mocha": "6.1.1",
+    "eslint-plugin-mocha": "6.2.2",
     "eslint-plugin-node": "10.0.0",
     "eslint-plugin-promise": "4.2.1",
-    "eslint-plugin-react": "7.14.3",
-    "eslint-plugin-react-hooks": "2.0.1",
+    "eslint-plugin-react": "7.17.0",
+    "eslint-plugin-react-hooks": "2.3.0",
     "jest": "24.9.0",
-    "jest-teamcity": "1.5.0"
+    "jest-teamcity": "1.6.0"
   },
   "jest": {
     "testEnvironment": "node",

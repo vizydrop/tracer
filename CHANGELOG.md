@@ -1,3 +1,6 @@
+#### v2.3.0
+Disable metrics
+
 #### v2.2.0 
 Do not patch logger if tracer inactive
 

@@ -3,7 +3,10 @@ const requestFilters = require(`./requestFilters`);
 
 function createConfig(overrides) {
     return {
-        // metricsInterval: 0, // https://github.com/elastic/apm-agent-nodejs/issues/1515
+        // metrics
+        metricsInterval: 0,
+        breakdownMetrics: false,
+
         centralConfig: false,
 
         // request processing
