@@ -1,3 +1,6 @@
+#### v2.3.1
+Update dependencies
+
 #### v2.3.0
 Disable metrics
 
