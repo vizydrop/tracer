@@ -1,3 +1,7 @@
+#### v2.4.0
+Disable body capture
+Disable use path as transactions
+
 #### v2.3.1
 Update dependencies
 

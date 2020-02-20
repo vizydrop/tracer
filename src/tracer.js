@@ -10,7 +10,8 @@ function createConfig(overrides) {
         centralConfig: false,
 
         // request processing
-        usePathAsTransactionName: true,
+        usePathAsTransactionName: false,
+        captureBody: `off`,
         captureHeaders: false,
         ignoreUrls: [
             `/api/v1/status`,
